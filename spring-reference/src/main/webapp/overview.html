@@ -49,12 +49,15 @@
 					</div>
 				</div>
 			</div>
+			<p>Spring框架是一个能够为Java应用提供综合基础架构的Java平台。Spring处理基础架构以便开发者可以集中精力处理应用逻辑。</p>
 			<p>Spring Framework is a Java platform that provides comprehensive
 
   infrastructure support for developing Java applications. Spring handles the
 
   infrastructure so you can focus on your application.
 			</p>
+			<p>Spring可以让开发者从“简单Java对象”(POJOs)创建应用，也可以非侵入性的对POJOs应用企业服务。
+			从而使得Spring同时适用于Java标准开发模型和整体或者部分Java企业应用。</p>
 			<p>Spring enables you to build applications from “plain old Java objects”
 
   (POJOs) and to apply enterprise services non-invasively to POJOs. This
@@ -63,6 +66,7 @@
 
   Java EE.
 			</p>
+			<p>作为一名开发者可以从Spring中获益如下：</p>
 			<p>Examples of how you, as an application developer, can use the Spring
 
   platform advantage:
@@ -70,24 +74,28 @@
 			<div class="itemizedlist">
 				<ul type="disc">
 					<li>
+						<p>可以使Java方法在数据库事务中执行而无需调用事务APIs实现</p>
 						<p>Make a Java method execute in a database transaction without
 
       having to deal with transaction APIs.
 						</p>
 					</li>
 					<li>
+						<p>可以将本地Java方法作为远程过程而无需调用远程ApIs实现</p>
 						<p>Make a local Java method a remote procedure without having to deal
 
       with remote APIs.
 						</p>
 					</li>
 					<li>
+						<p>可以将本地Java方法作为可管理的操作而无需调用JMX APIs实现</p>
 						<p>Make a local Java method a management operation without having to
 
       deal with JMX APIs.
 						</p>
 					</li>
 					<li>
+						<p>可以将被盗方法作为消息句柄使用而无需调用JMS APIs实现</p>
 						<p>Make a local Java method a message handler without having to deal
 
       with JMS APIs.
@@ -100,13 +108,27 @@
 					<div>
 						<div>
 							<h2 class="title" style="clear: both">
-								<a name="overview-dependency-injection"></a>1.1 Dependency Injection and Inversion of Control
+								<a name="overview-dependency-injection"></a>1.1 依赖注入和控制反转(Dependency Injection and Inversion of Control)
 							</h2>
 						</div>
 					</div>
 				</div>
 				<div class="sidebar">
 					<a name="background-ioc"></a>
+					<p class="title">
+						<b>背后的故事</b>
+					</p>
+					<p>“
+						<span class="quote">
+							<span class="emphasis">
+								<em> 问题是Spring反转了哪些控制？</em>
+							</span>
+						</span>” Martin Fowler于2004年他自己的网站上发表了关于控制反转(Ioc)的这个问题。 Fowler
+						觉得<em class="firstterm">依赖注入Dependency Injection</em>这个名字用起来更贴切。
+					</p>
+					<p>关于控制反转和依赖注入的讨论可以参见Fowler的一篇文章
+						<a class="ulink" href="http://martinfowler.com/articles/injection.html" target="_top">http://martinfowler.com/articles/injection.html</a>.
+					</p>
 					<p class="title">
 						<b>Background</b>
 					</p>
@@ -129,6 +151,10 @@
 						<a class="ulink" href="http://martinfowler.com/articles/injection.html" target="_top">http://martinfowler.com/articles/injection.html</a>.
 					</p>
 				</div>
+				<p>Java应用--广义上囊括了受限制的applets到n层服务端企业应用的各种应用。狭义上讲就是对象间协作而成的应用服务。
+				因此应用中的对象之间存在<span class="emphasis">
+						<em>依赖关系(dependencies)</em>
+					</span></p>
 				<p>Java applications -- a loose term that runs the gamut from
 
     constrained applets to n-tier server-side enterprise applications --
@@ -142,6 +168,15 @@
 					on each other.
 
 				</p>
+				<p>虽然Java平台提供了足够的应用开发功能，但还需要架构师和开发者将分散的基本模块组成一个有机整体。
+				即便我们可以通过	<em class="firstterm">工厂模式(Factory)</em>,
+					<em class="firstterm">抽象工厂模式(Abstract Factory)</em>,
+					<em class="firstterm">建造者模式(Builder)</em>,
+					<em class="firstterm">装饰模式(Decorator)</em>, 和
+					<em class="firstterm">服务定位模式(Service Locator)</em>
+					等设计模式将多样的类和对象实例连接起来组成应用，
+					但这些模式只是一些告诉你能做什么、如何使用、解决了什么问题等等的典型实例。
+					他们仍需<span class="emphasis"><em>你自己</em></span>在应用中实现。</p>
 				<p>Although the Java platform provides a wealth of application
 
     development functionality, it lacks the means to organize the basic
@@ -169,6 +204,12 @@
 					in your application.
 
 				</p>
+				<p>Spring框架的<span class="emphasis">
+						<em>控制反转(IoC)</em>
+					</span>模块致力于提供一个将分散模块组装成可工作的应用的格式化方法。
+					Spring框架将格式化的设计模式封装成可以继承到系统中的第一类对象。
+					大量组织机构使用Spring框架的控制反转来构建健壮的可维护的应用系统。
+					</p>
 				<p>The Spring Framework
 					<span class="emphasis">
 						<em>Inversion of Control</em>
@@ -194,11 +235,14 @@
 					<div>
 						<div>
 							<h2 class="title" style="clear: both">
-								<a name="overview-modules"></a>1.2 Modules
+								<a name="overview-modules"></a>1.2 模块(Modules)
 							</h2>
 						</div>
 					</div>
 				</div>
+				<p>Spring框架包可乐将近20个模块，这些模块分为核心容器(Core Container),
+				 数据获取/继承(Data Access/Integration), 互联网(Web), 面向切面编程(AOP (Aspect Oriented Programming))
+				 仪表盘(Instrumentation), 和 测试(Test)五类，如下图所示。</p>
 				<p>The Spring Framework consists of features organized into about 20
 
     modules. These modules are grouped into Core Container, Data
@@ -227,9 +271,18 @@
 					<p>The
 						<a class="link" href="beans.html#beans-introduction" title="3.1 Introduction to the Spring IoC container and beans">
 							<span class="emphasis">
-								<em>Core
+								<em>核心容器(Core Container)
+								</em>
+							</span>
+						</a>
+						包括了核心模块(Core), Beans, Context, and
+						Expression Language modules
 
-      Container
+					</p>
+					<p>The
+						<a class="link" href="beans.html#beans-introduction" title="3.1 Introduction to the Spring IoC container and beans">
+							<span class="emphasis">
+								<em>Core Container
 								</em>
 							</span>
 						</a>
@@ -240,9 +293,17 @@
 					<p>The
 						<a class="link" href="beans.html#beans-introduction" title="3.1 Introduction to the Spring IoC container and beans">
 							<span class="emphasis">
-								<em>Core and
-
-      Beans
+								<em>Core and Beans
+								</em>
+							</span>
+						</a>模块提供了框架的基础功能，包括了控制反转和依赖注入特性。
+						<code class="classname">BeanFactory</code>是工厂模式的复杂实现。
+						它不再需要编码实现单例，同时将配置和依赖说明从实际逻辑中解耦。
+					</p>
+					<p>The
+						<a class="link" href="beans.html#beans-introduction" title="3.1 Introduction to the Spring IoC container and beans">
+							<span class="emphasis">
+								<em>Core and Beans
 								</em>
 							</span>
 						</a>
@@ -255,6 +316,23 @@
 						allows you to decouple the configuration and specification of
 						dependencies from your actual program logic.
 
+					</p>
+					<p>The
+						<a class="link" href="beans.html#context-introduction" title="3.13 Additional Capabilities of the ApplicationContext">
+							<span class="emphasis">
+								<em>Context</em>
+							</span>
+						</a>
+						模块构建在
+
+						<a class="link" href="beans.html#beans-introduction" title="3.1 Introduction to the Spring IoC container and beans">
+							<span class="emphasis">
+								<em>Core and Beans</em>
+							</span>
+						</a>模块基础上：类似一个JNDI注册，它通过框架方式获取对象。Context模块继承了Bean模块的特性，
+						同时通过例如 一个servlet容器添加了国际化(例如使用资源绑定)、事件传播、资源获取、上下文透明的创建。
+						Context模块同时支持像EJB、JMX和基础远程调用等Java企业级特性。
+						<code class="classname">ApplicationContext</code>接口是Context模块重要接口。
 					</p>
 					<p>The
 						<a class="link" href="beans.html#context-introduction" title="3.13 Additional Capabilities of the ApplicationContext">
@@ -285,6 +363,16 @@
 					<p>The
 						<a class="link" href="expressions.html" title="6. Spring Expression Language (SpEL)">
 							<span class="emphasis">
+								<em>Expression Language
+								</em>
+							</span>
+						</a>模块提供了在运行时查询和操作对象的强有力的表达式语言。它是在JSP2.1技术规范中统一表达式语言(unified EL)的扩展。
+						它支持设置和获取属性值，对属性进行赋值，方法调用，获取数组、集合和索引、逻辑和数字操作、变量、通过Spring的IoC容器名字获取的对象的上下文。
+						它支持集合投射、查询和合并。
+					</p>
+					<p>The
+						<a class="link" href="expressions.html" title="6. Spring Expression Language (SpEL)">
+							<span class="emphasis">
 								<em>Expression
 
       Language
@@ -309,11 +397,18 @@
 						<div>
 							<div>
 								<h3 class="title">
-									<a name="d0e315"></a>1.2.2 Data Access/Integration
+									<a name="d0e315"></a>1.2.2 数据获取/集成 (Data Access/Integration)
 								</h3>
 							</div>
 						</div>
 					</div>
+					<p>
+						<span class="emphasis">
+							<em>数据获取/集成(Data Access/Integration)</em>
+						</span>
+						层 包括JDBC, ORM, OXM, JMS 和 Transaction 模块。
+
+					</p>
 					<p>The
 						<span class="emphasis">
 							<em>Data Access/Integration</em>
@@ -322,11 +417,29 @@
 						the JDBC, ORM, OXM, JMS and Transaction modules.
 
 					</p>
+					<p>
+						<a class="link" href="jdbc.html#jdbc-introduction" title="12.1 Introduction to Spring Framework JDBC">JDBC</a>
+						模块提供一个抽象的JDBC层简化了操作JDBC和更换数据库的代码。
+
+					</p>
 					<p>The
 						<a class="link" href="jdbc.html#jdbc-introduction" title="12.1 Introduction to Spring Framework JDBC">JDBC</a>
 						module provides
 						a JDBC-abstraction layer that removes the need to do tedious JDBC coding
 						and parsing of database-vendor specific error codes.
+
+					</p>
+					<p>The
+						<a class="link" href="orm.html#orm-introduction" title="13.1 Introduction to ORM with Spring">
+							<span class="emphasis">
+								<em>ORM</em>
+							</span>
+						</a>模块整合了<a class="link" href="orm.html#orm-jpa" title="13.5 JPA">JPA</a>,
+						<a class="link" href="orm.html#orm-jdo" title="13.4 JDO">JDO</a>,
+						<a class="link" href="orm.html#orm-hibernate" title="13.3 Hibernate">Hibernate</a>, 和
+						<a class="link" href="orm.html#orm-ibatis" title="13.6 iBATIS SQL Maps">iBatis</a>等
+						面向对象映射的APIs。
+						使用ORM包，可以将所有面向对象映射框架与Spring其它功能同时使用，例如在前面提到的简单声明式事务管理功能。
 
 					</p>
 					<p>The
@@ -350,6 +463,10 @@
 
       management feature mentioned previously.
 					</p>
+					<p>
+						<a class="link" href="oxm.html" title="14. Marshalling XML using O/X Mappers">OXM</a>
+						模块提供了一个为JAXB,Castor,XMLBeans,JiBX和XStream做Object/XML映射实现的抽象层 
+					</p>
 					<p>The
 						<a class="link" href="oxm.html" title="14. Marshalling XML using O/X Mappers">OXM</a>
 						module provides an abstraction
@@ -357,10 +474,19 @@
 						XMLBeans, JiBX and XStream.
 
 					</p>
-					<p>The Java Messaging Service (
+					<p>Java消息服务(
+						<a class="link" href="jms.html" title="21. JMS (Java Message Service)">JMS</a>) 
+						模块包含生产和消费消息的特性。
+					</p>
+					<p>Java Messaging Service (
 						<a class="link" href="jms.html" title="21. JMS (Java Message Service)">JMS</a>) module
 
       contains features for producing and consuming messages.
+					</p>
+					<p>
+						<a class="link" href="transaction.html" title="10. Transaction Management">事务(Transaction)</a>
+						模块支持针对实现特定接口的类和<span class="emphasis"><em>所有POJOs (plain oldJava objects)</em>
+						</span>的编程和声明式事务管理。
 					</p>
 					<p>The
 						<a class="link" href="transaction.html" title="10. Transaction Management">Transaction</a>
@@ -381,11 +507,18 @@
 						<div>
 							<div>
 								<h3 class="title">
-									<a name="d0e364"></a>1.2.3 Web
+									<a name="d0e364"></a>1.2.3 互联网(Web)
 								</h3>
 							</div>
 						</div>
 					</div>
+					<p>
+						<span class="emphasis">
+							<em>互联网(Web)</em>
+						</span>
+						层包含了 Web,Web-Servlet, Web-Struts, and Web-Portlet 模块。
+
+					</p>
 					<p>The
 						<span class="emphasis">
 							<em>Web</em>
@@ -393,6 +526,13 @@
 						layer consists of the Web,
 						Web-Servlet, Web-Struts, and Web-Portlet modules.
 
+					</p>
+					<p>Spring的
+						<span class="emphasis">
+							<em>互联网(Web)</em>
+						</span>
+						模块提供了的面向互联网集成的基本特性像多文件上传功能及使用servle监听和面向web应用上下文来初始化IoC容器的功能。
+						它也包含了Spring远程支持中涉及互联网的部分。
 					</p>
 					<p>Spring&#39;s
 						<span class="emphasis">
@@ -404,6 +544,18 @@
 						listeners and a web-oriented application context. It also contains the
 						web-related parts of Spring&#39;s remoting support.
 
+					</p>
+					<p>
+						<span class="emphasis">
+							<em>Web-Servlet</em>
+						</span>
+						模块包含了Spring的web应用中对于模型-视图-控制 (
+
+						<a class="link" href="mvc.html#mvc-introduction" title="15.1 Introduction to Spring Web MVC framework">
+							<span class="emphasis">
+								<em>MVC</em>
+							</span>
+						</a>)的实现。Spring的MVC框架将业务模型与web表单分离并可与Spring框架的其它特性整合 。
 					</p>
 					<p>The
 						<span class="emphasis">
@@ -424,6 +576,17 @@
 
       with all the other features of the Spring Framework.
 					</p>
+					<p>
+						<span class="emphasis">
+							<em>Web-Struts</em>
+						</span>
+						模块支持将Struts中web部分整合到Spring应用中。
+						值得注意的是在Spring3.0中此功能已被弃用，可以考虑将应用移植到Struts2.0，并将Spring的集成代码移植为Spring MVC解决方案。
+						Note that this support is now deprecated as of Spring 3.0.
+						Consider migrating your application to Struts 2.0 and its Spring
+						integration or to a Spring MVC solution.
+
+					</p>
 					<p>The
 						<span class="emphasis">
 							<em>Web-Struts</em>
@@ -433,6 +596,13 @@
 						application. Note that this support is now deprecated as of Spring 3.0.
 						Consider migrating your application to Struts 2.0 and its Spring
 						integration or to a Spring MVC solution.
+
+					</p>
+					<p>
+						<span class="emphasis">
+							<em>Web-Portlet</em>
+						</span>
+						模块提供在portlet环境中的MVC实现，并映射Web-Servlet模块中的功能。
 
 					</p>
 					<p>The
@@ -450,11 +620,23 @@
 						<div>
 							<div>
 								<h3 class="title">
-									<a name="d0e400"></a>1.2.4 AOP and Instrumentation
+									<a name="d0e400"></a>1.2.4 面向切面和测量系统(AOP and Instrumentation)
 								</h3>
 							</div>
 						</div>
 					</div>
+					<p>Spring的
+						<a class="link" href="aop.html#aop-introduction" title="7.1 Introduction">
+							<span class="emphasis">
+								<em>AOP</em>
+							</span>
+						</a>模块提供了
+
+						<span class="emphasis">
+							<em>AOP Alliance</em>
+						</span>兼容的面向切面编程的实现，它允许定义方法拦截和切入点来解耦代码。
+						使用代码级元数据功能，可以像.NET属性功能一样将行为信息合并到代码中。
+					</p>
 					<p>Spring&#39;s
 						<a class="link" href="aop.html#aop-introduction" title="7.1 Introduction">
 							<span class="emphasis">
@@ -478,6 +660,12 @@
 
       into your code, in a manner similar to that of .NET attributes.
 					</p>
+					<p>分开的
+						<span class="emphasis">
+							<em>Aspects</em>
+						</span>模块整合AspectJ。
+
+					</p>
 					<p>The separate
 						<span class="emphasis">
 							<em>Aspects</em>
@@ -485,6 +673,12 @@
 						module provides
 						integration with AspectJ.
 
+					</p>
+					<p>
+						<span class="emphasis">
+							<em>Instrumentation</em>
+						</span>
+						模块提供了在特定应用服务中类仪表盘的支持和类装载器的实现。
 					</p>
 					<p>The
 						<span class="emphasis">
@@ -501,11 +695,19 @@
 						<div>
 							<div>
 								<h3 class="title">
-									<a name="d0e423"></a>1.2.5 Test
+									<a name="d0e423"></a>1.2.5 测试(Test)
 								</h3>
 							</div>
 						</div>
 					</div>
+					<p>The
+						<span class="emphasis">
+							<em>Test</em>
+						</span>
+						模块提供了Spring组件使用JUnit和TestNG进行测试。
+						该模块提供了针对Spring 应用上下文和这些上下文的缓存一致的加载方法。
+						该模块通过提供mock objects允许独立于应用测试代码。
+					</p>
 					<p>The
 						<span class="emphasis">
 							<em>Test</em>
@@ -524,11 +726,12 @@
 					<div>
 						<div>
 							<h2 class="title" style="clear: both">
-								<a name="overview-usagescenarios"></a>1.3 Usage scenarios
+								<a name="overview-usagescenarios"></a>1.3 使用场景(Usage scenarios)
 							</h2>
 						</div>
 					</div>
 				</div>
+					<p>以上讨论的模块使得Spring可以在许多场景使用，从小的applets应用到庞大的企业级应用都可以使用Spring的事务管理功能和web框架集成功能。</p>
 				<p>The building blocks described previously make Spring a logical
 
     choice in many scenarios, from applets to full-fledged enterprise
@@ -541,12 +744,20 @@
 					<img src="images/overview-full.png" align="middle" />
 
 					<div class="caption">
-						<p>Typical full-fledged Spring web
-
-        application
+						<p>Typical full-fledged Spring web application
 						</p>
 					</div>
 				</div>
+				<p>Spring的
+					<a class="link" href="transaction.html#transaction-declarative" title="10.5 Declarative transaction management">
+						声明式事务管理特性(declarativetransaction management features)
+					</a>
+					使得web应用像使用EJB的容器管理事务一样变得随处都可以做成一个事务。
+					所有自定义业务逻辑都可以通过简单POJOs实现并由Spring的Ioc容器管理。
+					其它像发送邮件和验证功能等服务与web层独立，这样开发者就可以选择在哪里进行验证。
+					Spring的ORM支持与JPA，Hibernate，JDO，iBatis集成在一起。使用Hibernate时，你仍然可以使用映射文件和标准的Hibernate<code class="interfacename">SessionFactory</code>配置。
+					在控制层将领域模型与web层无缝整合起来后就无需<code class="classname">ActionForms</code>或者其它类来传输HTTP参数到领域模型中。
+				</p>
 				<p>Spring&#39;s
 					<a class="link" href="transaction.html#transaction-declarative" title="10.5 Declarative transaction management">declarative
 
@@ -576,12 +787,17 @@
 					<img src="images/overview-thirdparty-web.png" align="middle" />
 
 					<div class="caption">
-						<p>Spring middle-tier using a third-party web
-
-        framework
+						<p>Spring middle-tier using a third-party web framework
 						</p>
 					</div>
 				</div>
+				<p>一些场合并不允许完全的转换不同的框架。Spring 框架<span class="emphasis">
+						<em>并不强迫</em>
+					</span>你使用它的所有功能，这并不是用和不用的选择。
+					你可以使用WebWork，Struts，Tapestry或者其它的UI框架与基于Spring中间层共同使用，而得到Spring事务特性。
+					你只需要使用<code class="classname">ApplicationContext</code>封装业务逻辑并通过<code class="classname">WebApplicationContext</code>
+					集成到web层中。
+				</p>
 				<p>Sometimes circumstances do not allow you to completely switch to a
 
     different framework. The Spring Framework does
@@ -610,9 +826,13 @@
 					<img src="images/overview-remoting.png" align="middle" />
 
 					<div class="caption">
-						<p>Remoting usage scenario</p>
+						<p>远程调用使用场景(Remoting usage scenario)</p>
 					</div>
 				</div>
+				<p>可以使用Spring的<code class="literal">Hessian-</code>,
+					<code class="literal">Burlap-</code>,
+					<code class="literal">Rmi-</code>或者<code class="classname">JaxRpcProxyFactory</code>类
+					将已有代码转换成web服务。通过这些类的使用使得将已有应用可以远程调用不再困难。</p>
 				<p>When you need to access existing code through web services, you can
 
     use Spring&#39;s
@@ -633,6 +853,11 @@
 						<p>EJBs - Wrapping existing POJOs</p>
 					</div>
 				</div>
+				<p>Spring框架为企业JavaBeans提供了一个
+					<a class="link" href="ejb.html" title="20. Enterprise JavaBeans (EJB) integration">访问和抽象层</a>，
+					在可能需要声明式安全的可扩展的、防故障崩溃的web应用中重新使用已存在的POJOs和将它们封装成无状态的会话beans。
+
+				</p>
 				<p>The Spring Framework also provides an
 					<a class="link" href="ejb.html" title="20. Enterprise JavaBeans (EJB) integration">access and
 
@@ -649,11 +874,17 @@
 						<div>
 							<div>
 								<h3 class="title">
-									<a name="dependency-management"></a>1.3.1 Dependency Management and Naming Conventions
+									<a name="dependency-management"></a>1.3.1 依赖管理和命名约定(Dependency Management and Naming Conventions)
 								</h3>
 							</div>
 						</div>
 					</div>
+					<p>依赖管理和依赖注入不同。为了在应用中使用Spring的特性(像依赖注入)，你需要编译所有的类库，并使得它们在运行时在classpath中，或者在编译时。
+					这些依赖并非要注入的虚拟部分而是文件系统中的实际资源。
+					依赖管理包含了定位、存储这些资源，并将它们添加到环境变量中。
+					依赖可以是直接的(例如我的应用在运行时依赖Spring)或者间接的(例如我的应用依赖<code class="code">commons-dbcp</code>，同时它还依赖<code class="code">commons-pool</code>)
+					间接依赖是可传递的，所以他们很难去定位和管理。
+					</p>
 					<p>Dependency management and dependency injection are different
 
       things. To get those nice features of Spring into your application (like
@@ -682,6 +913,24 @@
 
       and manage.
 					</p>
+					<p>
+					使用Spring需要拷贝你需要的Spring组件的jar包到工程中。
+					Spring尽量减少包间的依赖，如果开发非web应用就无需添加spring-web模块。
+					在本指南中关于Spring的类库我们使用简短的命名约定
+					
+						<code class="code">spring-*</code>
+						或者
+
+						<code class="code">spring-*.jar,</code>
+						替代模块名 (例如
+
+						<code class="code">spring-core</code>,
+						<code class="code">spring-webmvc</code>,
+						<code class="code">spring-jms</code>等等).
+						实际的jar包名会像<code class="code">spring-core-3.0.0.RELEASE.jar</code>一样包含一个版本号。
+						 
+					</p>
+					
 					<p>If you are going to use Spring you need to get a copy of the jar
 
       libraries that comprise the pieces of Spring that you need. To make this
@@ -711,6 +960,8 @@
       not, and normally it also has a version number in the file name (e.g.
 						<code class="code">spring-core-3.0.0.RELEASE.jar</code>).
 					</p>
+					<p>Spring通常在4个地方发布产品：
+					</p>
 					<p>In general, Spring publishes its artifacts to four different
 
       places:
@@ -718,6 +969,11 @@
 					<div class="itemizedlist">
 						<ul type="disc">
 							<li>
+								<p>社区下载页面
+									<a class="ulink" href="http://www.springsource.org/downloads/community" target="_top">http://www.springsource.org/downloads/community</a>。
+									可以获取到Spring所有的jar包。
+									从3.0版本以后jar包的名字格式为<code class="code">org.springframework.*-&#60;version&#62;.jar</code>.
+								</p>
 								<p>On the community download site
 									<a class="ulink" href="http://www.springsource.org/downloads/community" target="_top">http://www.springsource.org/downloads/community</a>.
 
@@ -730,6 +986,11 @@
 								</p>
 							</li>
 							<li>
+								<p>Maven中心,不需要任何配置就可以进行查询的默认的仓库。
+								很多Spring依赖的公用类库都可以在Maven中心获取得到，大部分Spring社区中的开发者都是用Maven作为依赖管理工具，所以他们用起来会很方便。
+								在Maven中心的jar包名格式为<code class="code">spring-*-&#60;version&#62;.jar</code>
+								Maven的组Id为<code class="code">org.springframework</code>。
+								</p>
 								<p>Maven Central, which is the default repository that Maven
 
             queries, and does not require any special configuration to use.
@@ -748,6 +1009,15 @@
 								</p>
 							</li>
 							<li>
+							<p>The Enterprise Bundle Repository (EBR),
+							它是由SpringSource维护，同时存储了Spring的所有类库。在这里的Maven和Ivy仓库包含了所有的Spring jar包和Spring的依赖项，
+							同时还囊括了应用Spring应用的其他公共类库。
+							这里有所有Spring产品的发布、里程碑和 快照版本。
+							这里的jar文件名与社区下载中的一样(<code class="code">org.springframework.*-&#60;version&#62;.jar</code>),
+							Spring的外部依赖项的文件名格式带有<code class="code">com.springsource</code>的前缀。
+							可查看<a class="ulink" href="http://www.springsource.com/repository/app/faq" target="_top">FAQ</a>获取更多相关信息。
+
+								</p>
 								<p>The Enterprise Bundle Repository (EBR), which is run by
 
             SpringSource and also hosts all the libraries that integrate with
@@ -777,6 +1047,10 @@
 								</p>
 							</li>
 							<li>
+								<p>
+								在Amazon S3上的公开的Maven仓库存放着开发快照和里程碑版本(最终发布版也会在这里留有备份)。
+								jar文件名字与Maven中心仓库的命名一样。这里的Spring的开发版本可以与Maven中心仓库的其他类库公用。
+								</p>
 								<p>In a public Maven repository hosted on Amazon S3 for
 
             development snapshots and milestone releases (a copy of the final
@@ -792,6 +1066,14 @@
 							</li>
 						</ul>
 					</div>
+					<p>
+					在开发前的第一件事情是决定如何管理你的依赖关系：大多数开发者使用像Maven或者Ivy这样的自动构建系统，但你也可以手动的下载所有的jar包加入到工程中去。
+					如果是想使用Maven或者Ivy获取Spring jar包则需要考虑从哪个仓库获取，如果是要用到OSGi则需要使用EBR，因为EBR里有所有Spring依赖项的OSGi兼容包，例如Hibernate和Freemarker。
+					如果你不关系OSGi也不关心从哪里获取，他们之间有优缺点。
+					通常来说，最好只从一处获取jar包而最好不要混合使用，因为EBR的jar包与Maven中心的jar包命名规则不同。
+					
+					</p>
+					
 					<p>So the first thing you need to decide is how to manage your
 
       dependencies: most people use an automated system like Maven or Ivy, but
@@ -817,11 +1099,92 @@
 					<div class="table">
 						<a name="d0e586"></a>
 						<p class="title">
-							<b>Table 1.1. Comparison of Maven Central and SpringSource EBR
+							<b>Table 1.1. Maven中心与SpringSource EBR的比较(Comparison of Maven Central and SpringSource EBR)
 
           Repositories
 							</b>
 						</p>
+						<div class="table-contents">
+							<table summary="Comparison of Maven Central and SpringSource EBR Repositories" style="border-collapse: collapse;border-top: 1.0pt solid ; border-bottom: 1.0pt solid ; border-left: 1.0pt solid ; border-right: 1.0pt solid ; ">
+								<colgroup><col /><col /><col /></colgroup>
+								<thead>
+									<tr>
+										<th style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">特性</th>
+										<th style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">Maven Central</th>
+										<th style="border-bottom: 1.0pt solid ; ">EBR</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">OSGi兼容性</td>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">不明确</td>
+										<td style="border-bottom: 1.0pt solid ; ">兼容</td>
+									</tr>
+									<tr>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">jar包数量</td>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">成千上万，种类繁多</td>
+										<td style="border-bottom: 1.0pt solid ; ">只包含Spring使用的依赖项</td>
+									</tr>
+									<tr>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">一致的命名规则</td>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">否</td>
+										<td style="border-bottom: 1.0pt solid ; ">是</td>
+									</tr>
+									<tr>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">命名规则：组标识</td>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">多种多样。新产品通常使用域名作为组标识(org.slf4j)，旧产品通常使用产品名做标识(log4j)。
+										</td>
+										<td style="border-bottom: 1.0pt solid ; ">使用域名或者主要包名(org.springframework)
+										</td>
+									</tr>
+									<tr>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">命名规则：产品标识</td>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">多种多样。大部分项目模块使用横杠&#34;-&#34;做分隔(spring-core, logj4)
+										</td>
+										<td style="border-bottom: 1.0pt solid ; ">绑定符号名，通过主包根(org.springframework.beans)
+										如果jar包需要保证OSGi兼容性，则需要在前面增加com.springsource(com.springsource.org.apache.log4j)
+										</td>
+									</tr>
+									<tr>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">命名规则:版本号</td>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">多种多样. 新产品使用 m.m.m或者m.m.m.X (m表示数字, X表示文本).
+										旧产品使用m.m。一些产品和前面两种样式都不同。顺序定义了但大部分不可靠，所以并不能严格的依赖。
+										</td>
+										<td style="border-bottom: 1.0pt solid ; ">使用OSGi 版本号 m.m.m.X, (3.0.0.RC3)。最后面的文本标识依照字母的顺序发布</td>
+									</tr>
+									<tr>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">发布</td>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">通常通过文件同步或者代码控制自动更新，项目作者可以上传独立的jar到仓库中										</td>
+										<td style="border-bottom: 1.0pt solid ; ">手动更新 (通过由SpringSource维护的JIRA系统)</td>
+									</tr>
+									<tr>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">质量保障</td>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">由政策保障,准确度由作者保障
+										</td>
+										<td style="border-bottom: 1.0pt solid ; ">OSGi  manifest扩展, Maven POM and Ivy metadata. 质量由 Spring团队保障.
+										</td>
+									</tr>
+									<tr>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">托管宿主</td>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">由 Sonatype维护的Contegix同时带有多个镜像。
+										</td>
+										<td style="border-bottom: 1.0pt solid ; ">由SpringSource维护的S3 </td>
+									</tr>
+									<tr>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">查询工具</td>
+										<td style="border-right: 1.0pt solid ; border-bottom: 1.0pt solid ; ">多种多样</td>
+										<td style="border-bottom: 1.0pt solid ; ">
+											唯一的<a class="ulink" href="http://www.springsource.com/repository" target="_top">http://www.springsource.com/repository</a>
+										</td>
+									</tr>
+									<tr>
+										<td style="border-right: 1.0pt solid ; ">与SpringSource Tools集成</td>
+										<td style="border-right: 1.0pt solid ; ">通过带Mavne依赖管理工具的STS										</td>
+										<td style="">通过带Maven，Roo，CloudFoundry等扩展集成的 STS										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<div class="table-contents">
 							<table summary="Comparison of Maven Central and SpringSource EBR
 
@@ -960,11 +1323,15 @@
 							<div>
 								<div>
 									<h4 class="title">
-										<a name="d0e677"></a>1.3.1.1 Spring Dependencies and Depending on Spring
+										<a name="d0e677"></a>1.3.1.1 Spring依赖项和依赖Spring的(Spring Dependencies and Depending on Spring)
 									</h4>
 								</div>
 							</div>
 						</div>
+						<p>虽然Spring提供了大量企业及其他工具的整合及支持，但它仍能保持它的依赖项只限于绩效的范围：
+						针对一个简单的Spring应用无需下载大量jar包.
+						基本的依赖注入只对logging有依赖关系(下面会详细叙述logging选项)。
+						</p>
 						<p>Although Spring provides integration and support for a huge
 
         range of enterprise and other external tools, it intentionally keeps
@@ -980,6 +1347,10 @@
         and that is for logging (see below for a more detailed description of
 
         logging options).
+						</p>
+						<p>
+						接下来我们将描述搭建一个依赖Spring的应用的基本步骤。先是使用Maven搭建，然后使用Ivy搭建。
+						在任何情况下，如果任何事情都不清楚请参加依赖管理系统或者查看一些示例代码。Spring使用Ivy管理依赖项，Spring的示例大部分使用Maven。
 						</p>
 						<p>Next we outline the basic steps needed to configure an
 
@@ -999,11 +1370,14 @@
 							<div>
 								<div>
 									<h4 class="title">
-										<a name="d0e684"></a>1.3.1.2 Maven Dependency Management
+										<a name="d0e684"></a>1.3.1.2 Maven依赖管理(Maven Dependency Management)
 									</h4>
 								</div>
 							</div>
 						</div>
+						<p>如果是使用Mavne作为依赖管理工具，无需提供logging的依赖代码。
+						例如：当创建应用上下文和使用依赖注入配置应用时，Maven依赖代码如下：
+						</p>
 						<p>If you are using Maven for dependency management you don&#39;t even
 
         need to supply the logging dependency explicitly. For example, to
@@ -1029,11 +1403,16 @@
    &#60;/dependency&#62;
 
 &#60;/dependencies&#62; </pre>
+						<p>如此简单，需要注意的是如果你不需要使用SpringAPI进行编译，只是使用基本的依赖注入功能，那么依赖范围可以声明为runtime。</p>
 						<p>That&#39;s it. Note the scope can be declared as runtime if you
 
         don&#39;t need to compile against Spring APIs, which is typically the case
 
         for basic dependency injection use cases.
+						</p>
+						<p>在上述实例中，我们使用Mavne中的的命名规则，他可以在Maven中心和SpringSource S3Maven仓库中使用。
+						如果是使用S3 Maven仓库(里程碑和开发快照),需要在Maven配置中显示仓库位置。
+						针对发布版本:
 						</p>
 						<p>We used the Maven Central naming conventions in the example
 
@@ -1058,7 +1437,7 @@
    &#60;/repository&#62;
 
 &#60;/repositories&#62;</pre>
-						<p>For milestones:</p>
+						<p>针对里程碑:</p>
 						<pre class="programlisting">&#60;repositories&#62;
 
    &#60;repository&#62;
@@ -1072,7 +1451,7 @@
    &#60;/repository&#62;
 
 &#60;/repositories&#62;</pre>
-						<p>And for snapshots:</p>
+						<p>针对快照:</p>
 						<pre class="programlisting">&#60;repositories&#62;
 
    &#60;repository&#62;
@@ -1086,6 +1465,8 @@
    &#60;/repository&#62;
 
 &#60;/repositories&#62;</pre>
+						<p>如果使用SpringSource EBR 就需要为依赖项另外的命名规则，规则如下:
+						</p>
 						<p>To use the SpringSource EBR you would need to use a different
 
         naming convention for the dependencies. The names are usually easy to
@@ -1107,6 +1488,8 @@
    &#60;/dependency&#62;
 
 &#60;/dependencies&#62;</pre>
+						<p>同时需要显示声明仓库位置(只要URL正确即可):
+						</p>
 						<p>You also need to declare the location of the repository
 
         explicitly (only the URL is important):
@@ -1122,6 +1505,11 @@
    &#60;/repository&#62;
 
 &#60;/repositories&#62;</pre>
+						<p>如果是手动添加依赖项，上面的仓库声明中的URL是不可用的，但是在
+							<a class="ulink" href="http://www.springsource.com/repository" target="_top">http://www.springsource.com/repository</a>
+							中可以查询并下载依赖项。该网站同时提供Maven和Ivy的依赖项配置信息。
+
+						</p>
 						<p>If you are managing your dependencies by hand, the URL in the
 
         repository declaration above is not browseable, but there is a user
@@ -1139,16 +1527,23 @@
 							<div>
 								<div>
 									<h4 class="title">
-										<a name="d0e719"></a>1.3.1.3 Ivy Dependency Management
+										<a name="d0e719"></a>1.3.1.3 Ivy依赖关系(Ivy Dependency Management)
 									</h4>
 								</div>
 							</div>
 						</div>
+						<p>
+							<a class="ulink" href="http://ant.apache.org/ivy" target="_top">Ivy</a>依赖管理与Maven类似。
+
+						</p>
 						<p>If you prefer to use
 							<a class="ulink" href="http://ant.apache.org/ivy" target="_top">Ivy</a>
 							to manage dependencies
 							then there are similar names and configuration options.
 
+						</p>
+						<p>配置Ivy指向SpringSource RBR需要添加如下resolvers到你的
+						<code class="filename">ivysettings.xml</code>中:
 						</p>
 						<p>To configure Ivy to point to the SpringSource EBR add the
 
@@ -1196,11 +1591,15 @@
 
 
 &#60;/resolvers&#62;</pre>
+						<p>限于篇幅原因这里提供的XML信息并不不正确，需要你拷贝粘贴后删除在url patterns中的换行符</p>
 						<p>The XML above is not valid because the lines are too long - if
 
         you copy-paste then remove the extra line endings in the middle of the
 
         url patterns.
+						</p>
+						<p>Ivy配置完成后添加依赖项很简单，去除了仓库浏览器的问题中的详细信息，剩下的部分就是依赖项。(在
+							<code class="filename">ivy.xml</code>中):
 						</p>
 						<p>Once Ivy is configured to look in the EBR adding a dependency is
 
@@ -1221,11 +1620,15 @@
 						<div>
 							<div>
 								<h3 class="title">
-									<a name="d0e743"></a>1.3.2 Logging
+									<a name="d0e743"></a>1.3.2 日志(Logging)
 								</h3>
 							</div>
 						</div>
 					</div>
+					<p>日志是Spring的一个非常重要的依赖,因为 a) 它是唯一一个必须添加的外部依赖, b) 开发者需要看到他们使用工具的日志输出
+					 c) Spring集成的大部分其他工具也需要使用Logging的依赖，作为应用的目标之一开发者经常需要在统一的地方做应用的日志配置(包括所以其他的组件)，
+					 由于其他logging框架的存在，这个目标更加困难了。 
+					</p>
 					<p>Logging is a very important dependency for Spring because a) it is
 
       the only mandatory external dependency, b) everyone likes to see some
@@ -1243,6 +1646,13 @@
       than it might have been since there are so many choices of logging
 
       framework.
+					</p>
+					<p>Spring中的日志依赖是the Jakarta Commons Logging API (JCL)。
+					我们编译JCL，使JCL<code class="classname">Log</code>对象对继承至Spring框架的类可见。
+					所有Spring版本使用同一个logging类库是很重要的：即使是使用继承至Spring的应用，由于向后兼容性使得移植起来也很容易。
+					我们这通过让Spring中的一个模块依赖<code class="code">commons-logging</code>(JCL的权威实现)，而其他所有模块在编译时依赖这个模块。
+					如果使用Maven，疑惑是什么时候使用的<code class="code">commons-logging</code>，
+					它是在Spring的<code class="code">spring-core</code>中被用到。
 					</p>
 					<p>The mandatory logging dependency in Spring is the Jakarta Commons
 
@@ -1266,6 +1676,12 @@
       Spring and specifically from the central module called
 						<code class="code">spring-core</code>.
 					</p>
+					<p>使用<code class="code">commons-logging</code>有一点好处就是你无需任何配置就可以使用。
+					它本身有一套算法从classpath中查找logging框架，并找到一个它认为最合适的(或者你来指定)。
+					如果没找到任何logging框架，则使用JDK中的logging模块(java.util.logging 或者简称JUL)。
+					在大多数情况下，当你的Spring应用运行时，都能从控制台看到日志的输入，这是很重要的。
+
+					</p>
 					<p>The nice thing about
 						<code class="code">commons-logging</code>
 						is that you
@@ -1284,11 +1700,17 @@
 							<div>
 								<div>
 									<h4 class="title">
-										<a name="d0e767"></a>1.3.2.1 Not Using Commons Logging
+										<a name="d0e767"></a>1.3.2.1 不使用公共Logging(Not Using Commons Logging)
 									</h4>
 								</div>
 							</div>
 						</div>
+						<p>不幸的是，给使用者提供方便的<code class="code">commons-logging</code>中的运行时发现算法是有问题的。
+						如果我们将时钟向后调一点再运行一个新的Spring项目，它会使用一个不同的日志依赖。
+						我们第一个想到的是许多其他工具使用的Simple Logging Facade for Java (
+							<a class="ulink" href="http://www.slf4j.org" target="_top">SLF4J</a>)。
+						</p>
+						
 						<p>Unfortunately, the runtime discovery algorithm in
 							<code class="code">commons-logging</code>, while convenient for the end-user, is
 
@@ -1302,6 +1724,12 @@
         of other tools that people use with Spring inside their
 
         applications.
+						</p>
+						<p>关闭
+							<code class="code">commons-logging</code>很容易:
+							只要保证它不再运行时的classpath上即可以。
+							在Maven中鉴于Spring的依赖项都是声明方式，我们只要排除一次即可。
+
 						</p>
 						<p>Switching off
 							<code class="code">commons-logging</code>
@@ -1338,6 +1766,12 @@
    &#60;/dependency&#62;
 
 &#60;/dependencies&#62; </pre>
+						<p>在排除了公共Logging后我们的应用由于没有JCL API的实现可能运行不起来，所以我们需要提供一个新的日志系统
+						在下一节我们会告诉大家怎样提供一个可变的JCL实现，我们以SLF4J为例
+						In the next section we show you how to provide an
+
+        alternative implementation of JCL using SLF4J as an example.
+						</p>
 						<p>Now this application is probably broken because there is no
 
         implementation of the JCL API on the classpath, so to fix it a new one
@@ -1352,12 +1786,19 @@
 							<div>
 								<div>
 									<h4 class="title">
-										<a name="d0e787"></a>1.3.2.2 Using SLF4J
+										<a name="d0e787"></a>1.3.2.2 使用SLF4J(Using SLF4J)
 									</h4>
 								</div>
 							</div>
 						</div>
 					</div>
+					<p>SLF4J是一个干净的依赖，并且比 <code class="code">commons-logging</code>更高效。
+					因为它在编译时绑定而不是在运行时去寻找其他logging框架。
+					这就意味着你必须要指出你在运行时需要做什么，因此需要提前声明或者配置。
+					
+					 SLF4J提供了多数公共logging框架的绑定方法，所以只要将SLF4J绑定到你目前项目使用的那个框架，进行配置和管理即可。
+
+					</p>
 					<p>SLF4J is a cleaner dependency and more efficient at runtime than
 						<code class="code">commons-logging</code>
 						because it uses compile-time bindings
@@ -1367,6 +1808,11 @@
 						accordingly. SLF4J provides bindings to many common logging frameworks,
 						so you can usually choose one that you already use, and bind to that for
 						configuration and management.
+
+					</p>
+					<p>SLF4J提供多数公共logging框架的绑定方法包括JCL，它还可以反向关联：将自己和其他logging框架结合起来用。
+					所以在Spring中使用SLF4J，你需要将<code class="code">commons-logging</code>替换为SLF4J-JCL bridge。
+					一旦替换完成Spring内部的日志请求会被传送到SLF4J API中。所以如果你其他的类库样式使用SLF4J API，你就可以在一处进行配置和管理日志了。
 
 					</p>
 					<p>SLF4J provides bindings to many common logging frameworks,
@@ -1383,6 +1829,11 @@
 						libraries in your application use that API, then you have a single place
 						to configure and manage logging.
 
+					</p>
+					<p>一种方法是桥接Spring到SLF4J，然后为SLF4J到Log4J提供显示的绑定，这样就需要提供4个依赖
+					(除<code class="code">commons-logging</code>外)：
+					the bridge, the SLF4J API, 到Log4J的绑定, and the Log4J的实现。
+					在Maven中我们处理如下
 					</p>
 					<p>A common choice might be to bridge Spring to SLF4J, and then
 
@@ -1470,6 +1921,13 @@
    &#60;/dependency&#62;
 
 &#60;/dependencies&#62; </pre>
+					<p>这样看起来为了得到日志而需要一些依赖项。确实是这样，但这个是<span class="emphasis"><em>可选的</em>。
+						</span>
+						这样处理后会比使用带有类装载问题的<code class="code">commons-logging</code>更好。
+						尤其是你使用一个像OSGi平台一样的严格的容器。
+						同时因为是在编译时而非运行时绑定所以更高效。
+
+					</p>
 					<p>That might seem like a lot of dependencies just to get some
 
       logging. Well it is, but it
@@ -1485,6 +1943,13 @@
 						like an OSGi platform. Allegedly there is also a performance benefit
 						because the bindings are at compile-time not runtime.
 
+					</p>
+					<p>对于SLF4J用户，另一个更常用的选择，并且更简洁，包含更少的依赖是直接绑定到
+						<a class="ulink" href="http://logback.qos.ch" target="_top">Logback</a>. 
+						这种方案移除了多余的绑定步骤因为Logback直接实现了SLF4J，所以只需要依赖两个类库(<code class="code">jcl-over-slf4j</code>
+						和<code class="code">logback</code>).
+						如果使用这种方法的话需要在其他外部依赖中(非Spring依赖)移除 slf4j-api的依赖项。
+						因为在classpath只允许有一个版本的API。
 					</p>
 					<p>A more common choice amongst SLF4J users, which uses fewer steps
 
@@ -1508,11 +1973,15 @@
 							<div>
 								<div>
 									<h4 class="title">
-										<a name="d0e826"></a>1.3.2.3 Using Log4J
+										<a name="d0e826"></a>1.3.2.3 使用Log4J(Using Log4J)
 									</h4>
 								</div>
 							</div>
 						</div>
+						<p>许多人使用<a class="ulink" href="http://logging.apache.org/log4j" target="_top">Log4j</a>
+						作为logging框架.这是一个高效的稳定的，也是我们在构建和测试Spring中使用的日志框架。
+						Spring也提供一些配置和初始化Log4J的工具，在一些模块中有可选的编译时对Log4J的依赖。
+						</p>
 						<p>Many people use
 							<a class="ulink" href="http://logging.apache.org/log4j" target="_top">Log4j</a>
 							as a logging
@@ -1521,6 +1990,12 @@
 							build and test Spring. Spring also provides some utilities for
 							configuring and initializing Log4j, so it has an optional compile-time
 							dependency on Log4j in some modules.
+
+						</p>
+						<p>为了和默认的JCL依赖(<code class="code">commons-logging</code>)和Log4j共同使用
+						我们只需要将log4j放到classpath上，同时提供它的配置文件(<code class="code">log4j.properties</code>
+						或者<code class="code">log4j.xml</code>在classpath的根路径上)。
+						对于Maven用户依赖声明如下：
 
 						</p>
 						<p>To make Log4j work with the default JCL dependency
@@ -1567,6 +2042,8 @@
    &#60;/dependency&#62;
 
 &#60;/dependencies&#62; </pre>
+						<p>这是一个log4j的配置文件
+						</p>
 						<p>And here&#39;s a sample log4j.properties for logging to the
 
         console:
@@ -1594,6 +2071,10 @@ log4j.category.org.springframework.beans.factory=DEBUG</pre>
 									</div>
 								</div>
 							</div>
+							<p>大多数用户在提供JCL实现的容器中运行Spring应用。IBM Websphere应用服务器(WAS)就是这种。
+							这种情况经常会引起问题，不幸的是目前尚未有最终解决方案，
+							大多数情况下，只将<code class="code">commons-logging</code>排除在外是不够的。
+							</p>
 							<p>Many people run their Spring applications in a container that
 
           itself provides an implementation of JCL. IBM Websphere Application
@@ -1604,6 +2085,17 @@ log4j.category.org.springframework.beans.factory=DEBUG</pre>
 								<code class="code">commons-logging</code>
 								from your application is not enough in
 								most situations.
+
+							</p>
+							<p>To be clear about this:问题经常不是出自JCL本身，可能出自是<code class="code">commons-logging</code>
+							可能出自将 <code class="code">commons-logging</code>绑定到其他框架的时候。
+							出现这样的问题是因为<code class="code">commons-logging</code>
+							在一些容器中使用的旧版本(1.0)和大多数人使用的新版本(1.1)中使用不同的运行时查找策略。
+							Spring不使用JCL AIP中的异常部分，所以不会报错，但是 一旦Spring或者你的应用需要记录日志的时候，就会发现无法绑定到Log4j，因此没有日志输出
+								Spring does not use any unusual parts of the JCL API, so nothing
+								breaks there, but as soon as Spring or your application tries to do
+								any logging you can find that the bindings to Log4J are not
+								working.
 
 							</p>
 							<p>To be clear about this: the problems reported are usually not
@@ -1625,6 +2117,10 @@ log4j.category.org.springframework.beans.factory=DEBUG</pre>
 								any logging you can find that the bindings to Log4J are not
 								working.
 
+							</p>
+							<p>在使用WAS的这种情况下，最简单的办法是转换类加载层次(IBM叫他&#34;父类最后&#34;)
+							应用会控制JCL依赖，而不是容器。
+							这个方法并非一直可行，但还有许多其他的方法和途径，所以取决于容器的特定版本号和特性，解决的方式也不同。
 							</p>
 							<p>In such cases with WAS the easiest thing to do is to invert
 
