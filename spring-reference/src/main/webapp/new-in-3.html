@@ -1,0 +1,1128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>2. New Features and Enhancements in Spring 3.0</title>
+		<link rel="stylesheet" href="css/stylesheet.css" type="text/css" />
+
+		<meta name="generator" content="DocBook XSL Stylesheets V1.74.0" />
+
+		<link rel="home" href="index.html" title="Reference Documentation" />
+
+		<link rel="up" href="spring-whats-new.html" title="Part II. What&#39;s New in Spring 3.0" />
+
+		<link rel="prev" href="spring-whats-new.html" title="Part II. What&#39;s New in Spring 3.0" />
+
+		<link rel="next" href="spring-core.html" title="Part III. Core Technologies" />
+
+		
+	</head>
+	<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">﻿
+		<div class="navheader">
+			<table width="100%" summary="Navigation header">
+				<tbody>
+					<tr>
+						<th colspan="3" align="center">2. New Features and Enhancements in Spring 3.0</th>
+					</tr>
+					<tr>
+						<td width="20%" align="left">
+							<a accesskey="p" href="spring-whats-new.html">Prev</a> 
+						</td>
+						<th width="60%" align="center">Part II. What&#39;s New in Spring 3.0</th>
+						<td width="20%" align="right"> 
+							<a accesskey="n" href="spring-core.html">Next</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<hr />
+
+		</div>
+		<div class="chapter" lang="en">
+			<div class="titlepage">
+				<div>
+					<div>
+						<h2 class="title">
+							<a name="new-in-3"></a>2. New Features and Enhancements in Spring 3.0
+						</h2>
+					</div>
+				</div>
+			</div>
+			<p>如果你已经使用Spring框架一段时间了，你会注意到Spring经历了2个重大的版本：2006年10月发布的Spring2.0
+			和2007年11月发布的Spring2.5。而Spring3.0是第三个重大版本。
+			</p>
+			<p>If you have been using the Spring Framework for some time, you will be
+
+  aware that Spring has undergone two major revisions: Spring 2.0, released in
+
+  October 2006, and Spring 2.5, released in November 2007. It is now time for
+
+  a third overhaul resulting in Spring 3.0.
+			</p>
+			<div class="sidebar">
+				<a name="new-in-3-intro-java"></a>
+				<p class="title">
+					<b>Java SE and Java EE Support</b>
+				</p>
+				<p>Spring框架基于Java5，并完全支持Java6</p>
+				<p>The Spring Framework is now based on Java 5, and Java 6 is fully
+
+    supported.
+				</p>
+				<p>此外, Spring兼容J2EE 1.4 和 Java EE 5, 同时提供Java EE 6的一些早期支持。
+				</p>
+				<p>Furthermore, Spring is compatible with J2EE 1.4 and Java EE 5, while
+
+    at the same time introducing some early support for Java EE 6.
+				</p>
+			</div>
+			<div class="section" lang="en">
+				<div class="titlepage">
+					<div>
+						<div>
+							<h2 class="title" style="clear: both">
+								<a name="new-in-3-intro"></a>2.1 Java 5
+							</h2>
+						</div>
+					</div>
+				</div>
+				<p>整个框架基于java5特性像泛型、可变参数做了修订和其他改动。
+				我们尽力保障代码向后兼容。我们现在有泛型集合和映射的一致使用方式，FactoryBeans的一致使用，
+				和Spring AOP API中的桥接方法的一致解决方案。
+				泛型ApplicationListeners只自动接收特定事件类型。
+				现在所有回调接口例如TransactionCallback和HibernateCallback声明了一个泛型结果。
+				总体来说Spring的核心代码经过重新修订后针对Java5进行了优化处理。
+				</p>
+				<p>The entire framework code has been revised to take advantage of Java
+
+    5 features like generics, varargs and other language improvements. We have
+
+    done our best to still keep the code backwards compatible. We now have
+
+    consistent use of generic Collections and Maps, consistent use of generic
+
+    FactoryBeans, and also consistent resolution of bridge methods in the
+
+    Spring AOP API. Generic ApplicationListeners automatically receive
+
+    specific event types only. All callback interfaces such as
+
+    TransactionCallback and HibernateCallback declare a generic result value
+
+    now. Overall, the Spring core codebase is now freshly revised and
+
+    optimized for Java 5.
+				</p>
+				<p>Spring的TaskExecutor抽象更新为与Java5中的java.util.concurrent工具集成。
+				我们现在对Callables和Futures及ExecutorService适配器和ThreadFactory 集成提供了一流的支持。
+				尽可能的向JSR-236(针对JavaEE6的并发工具集)看齐。
+				此外，我们提供通过使用心得注解@Async(或者 EJB3.0的注解 @Asynchronous)来支持异步方法调用。
+				</p>
+				<p>Spring&#39;s TaskExecutor abstraction has been updated for close
+
+    integration with Java 5&#39;s java.util.concurrent facilities. We provide
+
+    first-class support for Callables and Futures now, as well as
+
+    ExecutorService adapters, ThreadFactory integration, etc. This has been
+
+    aligned with JSR-236 (Concurrency Utilities for Java EE 6) as far as
+
+    possible. Furthermore, we provide support for asynchronous method
+
+    invocations through the use of the new @Async annotation (or EJB 3.1&#39;s
+
+    @Asynchronous annotation).
+				</p>
+			</div>
+			<div class="section" lang="en">
+				<div class="titlepage">
+					<div>
+						<div>
+							<h2 class="title" style="clear: both">
+								<a name="new-in-3-improved-docs"></a>2.2 Improved documentation
+							</h2>
+						</div>
+					</div>
+				</div>
+				<p>
+				Spring 参考文档也基本上更新了Spring3.0中的所有更改和新特性。我们虽然竭力确保文档中没有错误，但仍然可能会有遗漏。
+				如果你发现错别字或者重大错误，请通过在<a class="ulink" href="http://jira.springframework.org/" target="_top"></a>上提出您的发现来告知Spring团队。
+				</p>
+				<p>The Spring reference documentation has also substantially been
+
+    updated to reflect all of the changes and new features for Spring 3.0.
+
+    While every effort has been made to ensure that there are no errors in
+
+    this documentation, some errors may nevertheless have crept in. If you do
+
+    spot any typos or even more serious errors, and you can spare a few cycles
+
+    during lunch, please do bring the error to the attention of the Spring
+
+    team by
+					<a class="ulink" href="http://jira.springframework.org/" target="_top">raising an
+
+    issue
+					</a>.
+				</p>
+			</div>
+			<div class="section" lang="en">
+				<div class="titlepage">
+					<div>
+						<div>
+							<h2 class="title" style="clear: both">
+								<a name="new-in-3-new-tutorial"></a>2.3 New articles and tutorials
+							</h2>
+						</div>
+					</div>
+				</div>
+				<p>
+					你可以在<a class="ulink" href="http://www.springsource.org/documentation" target="_top">Spring Documentation</a>
+					上找到许多告诉你如何使用Spring3新特性的优秀的文章和教程。
+				</p>
+				<p>
+				
+					There are many excellent articles and tutorials that show how to get started with Spring 3 features.
+					Read them at the
+
+					<a class="ulink" href="http://www.springsource.org/documentation" target="_top">Spring Documentation</a>
+					page.
+
+				</p>
+				<p>
+					<a name="new-in-3-samples"></a>
+					Spring的示例也升级成适用Spring3的新特性。另外，示例代码已经从Spring的源码中移动到一个专用的SVN
+					<a class="ulink" href="https://anonsvn.springframework.org/svn/spring-samples/" target="_top">repository</a>
+
+				</p>
+				<p>
+					<a name="new-in-3-samples"></a>
+					The samples have been improved and updated to take advantage of the new features in Spring 3.
+					Additionally, the samples have been moved out of the source tree into a dedicated SVN
+
+					<a class="ulink" href="https://anonsvn.springframework.org/svn/spring-samples/" target="_top">repository</a>
+					available at:
+
+				</p>
+				<p>
+					<code class="literal">https://anonsvn.springframework.org/svn/spring-samples/</code>
+				</p>
+				<p>
+				同时，示例代码不在随Spring3一起发布，而需要从上面提到的仓库中单独下载，但本文档仍然会使用一些示例(特别是Petclinic)来说明一些新特性。
+				</p>
+				<p>As such, the samples are no longer distributed alongside Spring 3 and need to be downloaded separately from the repository mentioned above. However, this documentation
+
+   will continue to refer to some samples (in particular Petclinic) to illustrate various features.
+				</p>
+				<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+					<table border="0" summary="Note">
+						<tbody>
+							<tr>
+								<td rowspan="2" align="center" valign="top" width="25">
+									<img alt="[Note]" src="images/note.gif" />
+
+								</td>
+								<th align="left">Note</th>
+							</tr>
+							<tr>
+								<td align="left" valign="top">For more information on Subversion (or in short SVN), see the project homepage at:
+									<code class="literal">http://subversion.apache.org/</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="section" lang="en">
+				<div class="titlepage">
+					<div>
+						<div>
+							<h2 class="title" style="clear: both">
+								<a name="new-in-3-modules-build"></a>2.4 New module organization and build system
+							</h2>
+						</div>
+					</div>
+				</div>
+				<p>Spring框架的模块被修订后被分成多个jar管理。
+				</p>
+				<p>The framework modules have been revised and are now managed
+
+    separately with one source-tree per module jar:
+				</p>
+				<div class="itemizedlist">
+					<ul type="disc">
+						<li>
+							<p>org.springframework.aop</p>
+						</li>
+						<li>
+							<p>org.springframework.beans</p>
+						</li>
+						<li>
+							<p>org.springframework.context</p>
+						</li>
+						<li>
+							<p>org.springframework.context.support</p>
+						</li>
+						<li>
+							<p>org.springframework.expression</p>
+						</li>
+						<li>
+							<p>org.springframework.instrument</p>
+						</li>
+						<li>
+							<p>org.springframework.jdbc</p>
+						</li>
+						<li>
+							<p>org.springframework.jms</p>
+						</li>
+						<li>
+							<p>org.springframework.orm</p>
+						</li>
+						<li>
+							<p>org.springframework.oxm</p>
+						</li>
+						<li>
+							<p>org.springframework.test</p>
+						</li>
+						<li>
+							<p>org.springframework.transaction</p>
+						</li>
+						<li>
+							<p>org.springframework.web</p>
+						</li>
+						<li>
+							<p>org.springframework.web.portlet</p>
+						</li>
+						<li>
+							<p>org.springframework.web.servlet</p>
+						</li>
+						<li>
+							<p>org.springframework.web.struts</p>
+						</li>
+					</ul>
+				</div>
+				<div class="sidebar">
+					<a name="new-in-3-intro-spring-jar"></a>
+					<p class="title">
+						<b>注意:</b>
+					</p>
+					<p>包含整个框架的spring.jar不再提供。
+					</p>
+					<p class="title">
+						<b>Note:</b>
+					</p>
+					<p>The spring.jar artifact that contained almost the entire framework
+
+      is no longer provided.
+					</p>
+				</div>
+				<p>我们现在使用一个叫Spring Web Flow2.0的新的Spring构建系统，它能提供
+				</p>
+				<div class="itemizedlist">
+					<ul type="disc">
+						<li>
+							<p>基于Ivy的 &#34;Spring构建&#34;系统</p>
+						</li>
+						<li>
+							<p>一致的部署过程</p>
+						</li>
+						<li>
+							<p>一致的依赖管理</p>
+						</li>
+						<li>
+							<p>一致的OSGi manifests生成机制</p>
+						</li>
+					</ul>
+				</div>
+				<p>We are now using a new Spring build system as known from Spring Web
+
+    Flow 2.0. This gives us:
+				</p>
+				<div class="itemizedlist">
+					<ul type="disc">
+						<li>
+							<p>Ivy-based &#34;Spring Build&#34; system</p>
+						</li>
+						<li>
+							<p>consistent deployment procedure</p>
+						</li>
+						<li>
+							<p>consistent dependency management</p>
+						</li>
+						<li>
+							<p>consistent generation of OSGi manifests</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="section" lang="en">
+				<div class="titlepage">
+					<div>
+						<div>
+							<h2 class="title" style="clear: both">
+								<a name="new-in-3-features-overview"></a>2.5 Overview of new features
+							</h2>
+						</div>
+					</div>
+				</div>
+				<p>下面所列为Spring3.0中的新特性，我们将在本章的后续部分详细介绍。
+				</p>
+				<div class="itemizedlist">
+					<ul type="disc">
+						<li>
+							<p>Spring EL表达式</p>
+						</li>
+						<li>
+							<p>增强的IoC/基于Java的bean metadata</p>
+						</li>
+						<li>
+							<p>多功能类型转换系统和 字段格式系统</p>
+						</li>
+						<li>
+							<p>从Spring Web Services项目移植的对象到XML映射功能 (OXM)</p>
+						</li>
+						<li>
+							<p>综合的 REST支持</p>
+						</li>
+						<li>
+							<p>新增@MVC</p>
+						</li>
+						<li>
+							<p>声明式模型验证</p>
+						</li>
+						<li>
+							<p>Java EE 6前期支持</p>
+						</li>
+						<li>
+							<p>嵌入式数据库支持</p>
+						</li>
+					</ul>
+				</div>
+				<p>This is a list of new features for Spring 3.0. We will cover these
+
+    features in more detail later in this section.
+				</p>
+				<div class="itemizedlist">
+					<ul type="disc">
+						<li>
+							<p>Spring Expression Language</p>
+						</li>
+						<li>
+							<p>IoC enhancements/Java based bean metadata</p>
+						</li>
+						<li>
+							<p>General-purpose type conversion system and field formatting
+
+        system
+							</p>
+						</li>
+						<li>
+							<p>Object to XML mapping functionality (OXM) moved from Spring Web
+
+        Services project
+							</p>
+						</li>
+						<li>
+							<p>Comprehensive REST support</p>
+						</li>
+						<li>
+							<p>@MVC additions</p>
+						</li>
+						<li>
+							<p>Declarative model validation</p>
+						</li>
+						<li>
+							<p>Early support for Java EE 6</p>
+						</li>
+						<li>
+							<p>Embedded database support</p>
+						</li>
+					</ul>
+				</div>
+				<div class="section" lang="en">
+					<div class="titlepage">
+						<div>
+							<div>
+								<h3 class="title">
+									<a name="new-feature-java5"></a>2.5.1 Core APIs updated for Java 5
+								</h3>
+							</div>
+						</div>
+					</div>
+					<p>BeanFactory接口尽可能返回有类型的bean实例</p>
+					<p>BeanFactory interface returns typed bean instances as far as possible:
+					</p>
+					<div class="itemizedlist">
+						<ul type="disc">
+							<li>
+								<p>T getBean(Class&#60;T&#62; requiredType)</p>
+							</li>
+							<li>
+								<p>T getBean(String name, Class&#60;T&#62; requiredType)</p>
+							</li>
+							<li>
+								<p>Map&#60;String, T&#62; getBeansOfType(Class&#60;T&#62;
+
+            type)
+								</p>
+							</li>
+						</ul>
+					</div>
+					<p>Spring的 TaskExecutor 接口现在继承自
+						<code class="classname">java.util.concurrent.Executor</code>:
+					</p>
+					<p>Spring&#39;s TaskExecutor interface now extends
+						<code class="classname">java.util.concurrent.Executor</code>:
+					</p>
+					<div class="itemizedlist">
+						<ul type="disc">
+							<li>
+								<p>extended AsyncTaskExecutor supports standard Callables with
+
+            Futures
+								</p>
+							</li>
+						</ul>
+					</div>
+					<p>新的基于 Java 5 的转换 API 和 SPI:</p>
+					<p>New Java 5 based converter API and SPI:</p>
+					<div class="itemizedlist">
+						<ul type="disc">
+							<li>
+								<p>stateless ConversionService and Converters</p>
+							</li>
+							<li>
+								<p>superseding standard JDK PropertyEditors</p>
+							</li>
+						</ul>
+					</div>
+					<p>Typed ApplicationListener&#60;E&#62;</p>
+				</div>
+				<div class="section" lang="en">
+					<div class="titlepage">
+						<div>
+							<div>
+								<h3 class="title">
+									<a name="new-feature-el"></a>2.5.2 Spring Expression Language
+								</h3>
+							</div>
+						</div>
+					</div>
+					<p>Spring的EL表达式与统一EL表达式语法类似但提供更多特性。
+					表达式可以在定义XML和基于注解的bean定义时使用，同时也是支持跨Spring portfolio间的表达式支持基础
+					这项新功能的详细说明可以在<a class="link" href="expressions.html" title="6. Spring Expression Language (SpEL)">Spring Expression Language (SpEL)</a>中查看。
+					</p>
+					<p>Spring introduces an expression language which is similar to
+
+      Unified EL in its syntax but offers significantly more features. The
+
+      expression language can be used when defining XML and Annotation based
+
+      bean definitions and also serves as the foundation for expression
+
+      language support across the Spring portfolio. Details of this new
+
+      functionality can be found in the chapter
+						<a class="link" href="expressions.html" title="6. Spring Expression Language (SpEL)">Spring Expression Language (SpEL).</a>
+					</p>
+					<p>Spring EL表达式致力于提供一个可以跨Spring portfolio中所有产品使用的良好支持的EL表达式
+					它的语言特性是为了满足Spring portfolio中的项目需求而产生的，这些特性包括
+					在基于Eclipse的<a class="ulink" href="http://www.springsource.com/products/sts" target="_top">SpringSource Tool Suite</a>
+					代码补全支持工具化。
+					</p>
+					
+					<p>The Spring Expression Language was created to provide the Spring
+
+      community a single, well supported expression language that can be used
+
+      across all the products in the Spring portfolio. Its language features
+
+      are driven by the requirements of the projects in the Spring portfolio,
+
+      including tooling requirements for code completion support within the
+
+      Eclipse based
+						<a class="ulink" href="http://www.springsource.com/products/sts" target="_top">SpringSource
+
+      Tool Suite
+						</a>.
+					</p>
+					<p>如下示例显示了如何使用Spring EL表达式配置数据库的一些属性
+					</p>
+					<p>The following is an example of how the Expression Language can be
+
+      used to configure some properties of a database setup
+					</p>
+					<pre class="programlisting">&#60;<span class="hl-tag">bean</span> <span class="hl-attribute">class</span>=<span class="hl-value">&#34;mycompany.RewardsTestDatabase&#34;</span>&#62;
+
+    &#60;<span class="hl-tag">property</span> <span class="hl-attribute">name</span>=<span class="hl-value">&#34;databaseName&#34;</span>
+
+        <span class="hl-attribute">value</span>=<span class="hl-value">&#34;#{systemProperties.databaseName}&#34;</span>/&#62;
+
+    &#60;<span class="hl-tag">property</span> <span class="hl-attribute">name</span>=<span class="hl-value">&#34;keyGenerator&#34;</span>
+
+        <span class="hl-attribute">value</span>=<span class="hl-value">&#34;#{strategyBean.databaseKeyGenerator}&#34;</span>/&#62;
+
+&#60;<span class="hl-tag">/bean</span>&#62;
+
+</pre>
+					<p>这项功能也可以通过使用注释来配置完成:
+					</p>
+					<p>This functionality is also available if you prefer to configure
+
+      your components using annotations:
+					</p>
+					<pre class="programlisting">@Repository 
+
+<span class="hl-keyword">public</span> <span class="hl-keyword">class</span> RewardsTestDatabase {
+
+
+
+    @Value(<span class="hl-string">&#34;#{systemProperties.databaseName}&#34;</span>)
+
+    <span class="hl-keyword">public</span> <span class="hl-keyword">void</span> setDatabaseName(String dbName) { … }
+
+
+
+    @Value(<span class="hl-string">&#34;#{strategyBean.databaseKeyGenerator}&#34;</span>)
+
+    <span class="hl-keyword">public</span> <span class="hl-keyword">void</span> setKeyGenerator(KeyGenerator kg) { … }
+
+}
+
+</pre>
+				</div>
+				<div class="section" lang="en">
+					<div class="titlepage">
+						<div>
+							<div>
+								<h3 class="title">
+									<a name="new-feature-java-config"></a>2.5.3 The Inversion of Control (IoC) container
+								</h3>
+							</div>
+						</div>
+					</div>
+					<div class="section" lang="en">
+						<div class="titlepage">
+							<div>
+								<div>
+									<h4 class="title">
+										<a name="new-java-configuration"></a>2.5.3.1 Java based bean metadata
+									</h4>
+								</div>
+							</div>
+						</div>
+						<p>
+							<a class="ulink" href="http://www.springsource.org/javaconfig" target="_top">JavaConfig</a>项目中一些核心特性添加到Spring框架中
+							如下的注解已被Spring直接支持:
+
+						</p>
+						<p>Some core features from the
+							<a class="ulink" href="http://www.springsource.org/javaconfig" target="_top">JavaConfig</a>
+							project have been added to the Spring Framework now. This means that
+							the following annotations are now directly supported:
+
+						</p>
+						<div class="itemizedlist">
+							<ul type="disc">
+								<li>
+									<p>@Configuration</p>
+								</li>
+								<li>
+									<p>@Bean</p>
+								</li>
+								<li>
+									<p>@DependsOn</p>
+								</li>
+								<li>
+									<p>@Primary</p>
+								</li>
+								<li>
+									<p>@Lazy</p>
+								</li>
+								<li>
+									<p>@Import</p>
+								</li>
+								<li>
+									<p>@ImportResource</p>
+								</li>
+								<li>
+									<p>@Value</p>
+								</li>
+							</ul>
+						</div>
+						<p>下面是一个通过使用JavaConfig特性进行提供基本配置的示例代码。
+						</p>
+						<p>Here is an example of a Java class providing basic configuration
+
+        using the new JavaConfig features:
+						</p>
+						<pre class="programlisting"><span class="hl-keyword">package</span> org.example.config;
+
+
+
+@Configuration
+
+<span class="hl-keyword">public</span> <span class="hl-keyword">class</span> AppConfig {
+
+    <span class="hl-keyword">private</span> @Value(<span class="hl-string">&#34;#{jdbcProperties.url}&#34;</span>) String jdbcUrl;
+
+    <span class="hl-keyword">private</span> @Value(<span class="hl-string">&#34;#{jdbcProperties.username}&#34;</span>) String username;
+
+    <span class="hl-keyword">private</span> @Value(<span class="hl-string">&#34;#{jdbcProperties.password}&#34;</span>) String password;
+
+
+
+    @Bean
+
+    <span class="hl-keyword">public</span> FooService fooService() {
+
+        <span class="hl-keyword">return</span> <span class="hl-keyword">new</span> FooServiceImpl(fooRepository());
+
+    }
+
+
+
+    @Bean
+
+    <span class="hl-keyword">public</span> FooRepository fooRepository() {
+
+        <span class="hl-keyword">return</span> <span class="hl-keyword">new</span> HibernateFooRepository(sessionFactory());
+
+    }
+
+
+
+    @Bean
+
+    <span class="hl-keyword">public</span> SessionFactory sessionFactory() {
+
+        <span class="hl-comment">// wire up a session factory</span>
+
+        AnnotationSessionFactoryBean asFactoryBean = 
+
+            <span class="hl-keyword">new</span> AnnotationSessionFactoryBean();
+
+        asFactoryBean.setDataSource(dataSource());
+
+        <span class="hl-comment">// additional config</span>
+
+        <span class="hl-keyword">return</span> asFactoryBean.getObject();
+
+    }
+
+
+
+    @Bean
+
+    <span class="hl-keyword">public</span> DataSource dataSource() { 
+
+        <span class="hl-keyword">return</span> <span class="hl-keyword">new</span> DriverManagerDataSource(jdbcUrl, username, password);
+
+    }
+
+}
+
+</pre>
+						<p>让上面的代码工作需要添加组件扫描实体在上下文配置XML文件中
+
+						</p>
+						<p>
+							To get this to work you need to add the following component
+							scanning entry in your minimal application context XML file.
+
+						</p>
+						<pre class="programlisting">&#60;<span class="hl-tag">context:component-scan</span> <span class="hl-attribute">base-package</span>=<span class="hl-value">&#34;org.example.config&#34;</span>/&#62;
+
+&#60;<span class="hl-tag">util:properties</span> <span class="hl-attribute">id</span>=<span class="hl-value">&#34;jdbcProperties&#34;</span> <span class="hl-attribute">location</span>=<span class="hl-value">&#34;classpath:org/example/config/jdbc.properties&#34;</span>/&#62;
+
+        </pre>
+        				<p>或者可以在开始阶段通过使用<code class="literal">AnnotationConfigApplicationContext</code>:启动一个标识
+							<code class="literal">@Configuration</code>
+							的类
+						</p>
+						<p>
+							Or you can bootstrap a
+
+							<code class="literal">@Configuration</code>
+							class directly using
+
+							<code class="literal">AnnotationConfigApplicationContext</code>:
+						</p>
+						<pre class="programlisting"><span class="hl-keyword">public</span> <span class="hl-keyword">static</span> <span class="hl-keyword">void</span> main(String[] args) {
+
+    ApplicationContext ctx = <span class="hl-keyword">new</span> AnnotationConfigApplicationContext(AppConfig.<span class="hl-keyword">class</span>);
+
+    FooService fooService = ctx.getBean(FooService.<span class="hl-keyword">class</span>);
+
+    fooService.doStuff();
+
+}</pre>
+						<p>
+							查看
+
+							<a class="xref" href="beans.html#beans-java-instantiating-container" title="3.11.2 Instantiating the Spring container using AnnotationConfigApplicationContext">Section 3.11.2, “Instantiating the Spring container using AnnotationConfigApplicationContext”
+							</a>获取更多关于<code class="literal">AnnotationConfigApplicationContext</code>的信息。
+						</p>
+						<p>
+							See
+
+							<a class="xref" href="beans.html#beans-java-instantiating-container" title="3.11.2 Instantiating the Spring container using AnnotationConfigApplicationContext">Section 3.11.2, “Instantiating the Spring container using
+
+      AnnotationConfigApplicationContext”
+							</a>
+							for full information on
+
+							<code class="literal">AnnotationConfigApplicationContext</code>.
+						</p>
+					</div>
+					<div class="section" lang="en">
+						<div class="titlepage">
+							<div>
+								<div>
+									<h4 class="title">
+										<a name="d0e1146"></a>2.5.3.2 Defining bean metadata within components
+									</h4>
+								</div>
+							</div>
+						</div>
+						<p>在Spring组件中可以使用注解
+							<code class="literal">@Bean</code>向容器提供一个工厂bean的定义。
+							查看
+							<a class="link" href="beans.html#beans-factorybeans-annotations" title="3.10.4 Defining bean metadata within components">Defining bean metadata within
+
+        components
+							</a>
+							获取更多信息。
+
+						</p>
+						<p>
+							<code class="literal">@Bean</code>
+							annotated methods are also supported
+							inside Spring components. They contribute a factory bean definition to
+							the container. See
+
+							<a class="link" href="beans.html#beans-factorybeans-annotations" title="3.10.4 Defining bean metadata within components">Defining bean metadata within
+
+        components
+							</a>
+							for more information
+
+						</p>
+					</div>
+				</div>
+				<div class="section" lang="en">
+					<div class="titlepage">
+						<div>
+							<div>
+								<h3 class="title">
+									<a name="new-feature-convert-and-format"></a>2.5.4 General purpose type conversion system and field formatting
+
+      system
+								</h3>
+							</div>
+						</div>
+					</div>
+					<p>在页面
+						<a class="link" href="validation.html#core-convert" title="5.5 Spring 3 Type Conversion">type conversion system
+						</a>中描述了类型转换系统的普遍用法。
+						该系统使用SpEl表达式来做类型转换，当绑定bean属性值的时候是使用Spring容器或者绑定器做类型转换
+					</p>
+					<p>A general purpose
+						<a class="link" href="validation.html#core-convert" title="5.5 Spring 3 Type Conversion">type conversion system
+						</a>
+						has been introduced. The system is currently used by SpEL
+						for type conversion, and may also be used by a Spring Container and DataBinder when
+						binding bean property values.
+
+					</p>
+					<p>此外在
+						<a class="link" href="validation.html#format" title="5.6 Spring 3 Field Formatting">formatter</a>
+						中介绍了如何使用formatter SPI来格式化字段值。
+						在像Spring MVC这样的客户环境使用中，这个SPI为JavaBean属性编辑器提供了一个更简单却又更健壮的选择。
+
+					</p>
+					<p>In addition, a
+						<a class="link" href="validation.html#format" title="5.6 Spring 3 Field Formatting">formatter</a>
+						SPI
+						has been introduced for formatting field values. This SPI provides
+						a simpler and more robust alternative to JavaBean PropertyEditors for use in client
+						environments such as Spring MVC.
+
+					</p>
+				</div>
+				<div class="section" lang="en">
+					<div class="titlepage">
+						<div>
+							<div>
+								<h3 class="title">
+									<a name="new-feature-oxm"></a>2.5.5 The Data Tier
+								</h3>
+							</div>
+						</div>
+					</div>
+					<p>对象到XML映射功能 (OXM)已从Spring Web Services项目中移植到Spring框架的核心代码中。
+					这项功能在包
+						<code class="literal">org.springframework.oxm</code>中.可以在
+						<a class="link" href="oxm.html" title="14. Marshalling XML using O/X Mappers">Marshalling XML using O/X Mappers</a>
+						中查看更多关于
+						<code class="literal">OXM</code>模块的信息。
+					</p>
+					<p>Object to XML mapping functionality (OXM) from the Spring Web
+
+      Services project has been moved to the core Spring Framework now. The
+
+      functionality is found in the
+						<code class="literal">org.springframework.oxm</code>
+						package. More information on the use of the
+
+						<code class="literal">OXM</code>
+						module can be found in the
+
+						<a class="link" href="oxm.html" title="14. Marshalling XML using O/X Mappers">Marshalling XML using O/X
+
+      Mappers
+						</a>
+						chapter.
+
+					</p>
+				</div>
+				<div class="section" lang="en">
+					<div class="titlepage">
+						<div>
+							<div>
+								<h3 class="title">
+									<a name="new-feature-rest"></a>2.5.6 The Web Tier
+								</h3>
+							</div>
+						</div>
+					</div>
+					<p>而在web层提供的新特性支持创建RESTful的web服务和web应用。在web应用中还新增了一些注解。
+					</p>
+					<p>The most exciting new feature for the Web Tier is the support for
+
+      building RESTful web services and web applications. There are also some
+
+      new annotations that can be used in any web application.
+					</p>
+					<div class="section" lang="en">
+						<div class="titlepage">
+							<div>
+								<div>
+									<h4 class="title">
+										<a name="d0e1188"></a>2.5.6.1 Comprehensive REST support
+									</h4>
+								</div>
+							</div>
+						</div>
+						<p>对服务端创建RESTful应用的支持是作为已存在的注解驱动MVCweb框架的扩展提供的
+						客户端的支持由类似<code class="classname">JdbcTemplate</code>或者<code class="classname">JmsTemplate</code>等模板类的
+						<code class="classname">RestTemplate</code>来提供。
+						服务端和客户端的REST功能都使用了<code class="interfacename">HttpConverter</code>中的工具来处理
+						HTTP请求和回应中的二进制流与对象之间的转换。
+						</p>
+						
+						<p>Server-side support for building RESTful applications has been
+
+        provided as an extension of the existing annotation driven MVC web
+
+        framework. Client-side support is provided by the
+							<code class="classname">RestTemplate</code>
+							class in the spirit of other
+							template classes such as
+
+							<code class="classname">JdbcTemplate</code>
+							and
+
+							<code class="classname">JmsTemplate</code>. Both server and client side REST
+
+        functionality make use of
+							<code class="interfacename">HttpConverter</code>s to facilitate the
+
+        conversion between objects and their representation in HTTP requests
+
+        and responses.
+						</p>
+						<p>
+							<code class="classname">MarshallingHttpMessageConverter</code>
+							使用了前面提到的
+
+							<span class="emphasis">
+								<em>对象到XML映射</em>
+							</span>的功能。
+
+						</p>
+						<p>The
+							<code class="classname">MarshallingHttpMessageConverter</code>
+							uses
+							the
+
+							<span class="emphasis">
+								<em>Object to XML mapping</em>
+							</span>
+							functionality mentioned
+							earlier.
+
+						</p>
+						<p>在
+							<a class="link" href="mvc.html" title="15. Web MVC framework">MVC</a>和
+							<a class="link" href="remoting.html#rest-resttemplate" title="19.9.1 RestTemplate">the RestTemplate</a>
+							中可以查看更多信息。
+
+						</p>
+						<p>Refer to the sections on
+							<a class="link" href="mvc.html" title="15. Web MVC framework">MVC</a>
+							and
+
+							<a class="link" href="remoting.html#rest-resttemplate" title="19.9.1 RestTemplate">the RestTemplate</a>
+							for more
+							information.
+
+						</p>
+					</div>
+					<div class="section" lang="en">
+						<div class="titlepage">
+							<div>
+								<div>
+									<h4 class="title">
+										<a name="d0e1221"></a>2.5.6.2 @MVC additions
+									</h4>
+								</div>
+							</div>
+						</div>
+						<p>一个<code class="literal">mvc</code>的命名空间被引入来简化Spring MVC的配置。</p>
+						<p>A
+							<code class="literal">mvc</code>
+							namespace has been introduced that greatly simplifies Spring MVC configuration.
+
+						</p>
+						<p>还引入了
+							<code class="classname">@CookieValue</code>和<code class="classname">@RequestHeaders</code>注解。
+							查看
+							<a class="link" href="mvc.html#mvc-ann-cookievalue" title="15.3.2.10 Mapping cookie values with the @CookieValue annotation">Mapping cookie values with the @CookieValue annotation
+							</a>
+							和
+
+							<a class="link" href="mvc.html#mvc-ann-requestheader" title="15.3.2.11 Mapping request header attributes with the @RequestHeader annotation">Mapping request header attributes with the @RequestHeader annotation
+							</a>
+							获取更多信息。
+
+						</p>
+						<p>Additional annotations such as
+							<code class="classname">@CookieValue</code>
+							and
+
+							<code class="classname">@RequestHeaders</code>
+							have been added. See
+
+							<a class="link" href="mvc.html#mvc-ann-cookievalue" title="15.3.2.10 Mapping cookie values with the @CookieValue annotation">Mapping cookie values with the
+
+        @CookieValue annotation
+							</a>
+							and
+
+							<a class="link" href="mvc.html#mvc-ann-requestheader" title="15.3.2.11 Mapping request header attributes with the @RequestHeader annotation">Mapping request header attributes with
+
+        the @RequestHeader annotation
+							</a>
+							for more information.
+
+						</p>
+					</div>
+				</div>
+				<div class="section" lang="en">
+					<div class="titlepage">
+						<div>
+							<div>
+								<h3 class="title">
+									<a name="new-feature-validation"></a>2.5.7 Declarative model validation
+								</h3>
+							</div>
+						</div>
+					</div>
+					<p>增加了一些<a class="link" href="validation.html#validation-beanvalidation" title="5.7 Spring 3 Validation">验证增强(validation enhancements)</a>功能,
+					包含用Hibernate验证器作为默认的验证器对JSR303支持
+					</p>
+					<p>Several
+						<a class="link" href="validation.html#validation-beanvalidation" title="5.7 Spring 3 Validation">validation enhancements</a>,
+
+      including JSR 303 support that uses Hibernate Validator as the default provider.
+					</p>
+				</div>
+				<div class="section" lang="en">
+					<div class="titlepage">
+						<div>
+							<div>
+								<h3 class="title">
+									<a name="new-feature-jee-6"></a>2.5.8 Early support for Java EE 6
+								</h3>
+							</div>
+						</div>
+					</div>
+					<p>使用@Async注解(或者EJB 3.1的@Asynchronous注解)来提供一部方法调用
+					</p>
+					<p>We provide support for asynchronous method invocations through the
+
+      use of the new @Async annotation (or EJB 3.1&#39;s @Asynchronous
+
+      annotation).
+					</p>
+					<p>JSR 303, JSF 2.0, JPA 2.0, etc</p>
+				</div>
+				<div class="section" lang="en">
+					<div class="titlepage">
+						<div>
+							<div>
+								<h3 class="title">
+									<a name="new-feature-embedded-databases"></a>2.5.9 Support for embedded databases
+								</h3>
+							</div>
+						</div>
+					</div>
+					<p>新增对HSQL，H2和Derby等
+						<a class="link" href="jdbc.html#jdbc-embedded-database-support" title="12.8 Embedded database support">embedded Java database engines
+						</a>的支持
+					</p>
+					<p>Convenient support for
+						<a class="link" href="jdbc.html#jdbc-embedded-database-support" title="12.8 Embedded database support">embedded Java database
+
+      engines
+						</a>, including HSQL, H2, and Derby, is now provided.
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="navfooter">
+			<hr />
+
+			<table width="100%" summary="Navigation footer">
+				<tbody>
+					<tr>
+						<td width="40%" align="left">
+							<a accesskey="p" href="spring-whats-new.html">Prev</a> 
+						</td>
+						<td width="20%" align="center">
+							<a accesskey="u" href="spring-whats-new.html">Up</a>
+						</td>
+						<td width="40%" align="right"> 
+							<a accesskey="n" href="spring-core.html">Next</a>
+						</td>
+					</tr>
+					<tr>
+						<td width="40%" align="left" valign="top">Part II. What&#39;s New in Spring 3.0 </td>
+						<td width="20%" align="center">
+							<a accesskey="h" href="index.html">Home</a>
+						</td>
+						<td width="40%" align="right" valign="top"> Part III. Core Technologies</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	
+		</div>
+	</body>
+</html>
